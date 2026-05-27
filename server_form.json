@@ -1,0 +1,267 @@
+{
+  "namespace": "server_form",
+
+  "long_form": {
+    "modifications": [
+      {
+        "array_name": "bindings",
+        "operation": "insert_back",
+        "value": [
+          {
+            "binding_name": "#title_text"
+          },
+          {
+            "binding_type": "view",
+            "source_property_name": "((#title_text - 'PE_OWNER_UI' - 'PE_PLAYER_UI') = #title_text)",
+            "target_property_name": "#visible"
+          }
+        ]
+      }
+    ]
+  },
+
+  "main_screen_content": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_back",
+        "value": [
+          {
+            "petrik_server_form_factory": {
+              "type": "panel",
+              "factory": {
+                "name": "server_form_factory",
+                "control_ids": {
+                  "long_form": "@server_form.petrik_root"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+
+  "petrik_root": {
+    "type": "panel",
+    "size": ["100%", "100%"],
+    "bindings": [
+      {
+        "binding_name": "#title_text"
+      }
+    ],
+    "controls": [
+      {
+        "owner_panel": {
+          "type": "panel",
+          "size": ["100%", "100%"],
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "petrik_root",
+              "source_property_name": "(not ((#title_text - 'PE_OWNER_UI') = #title_text))",
+              "target_property_name": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "admin_frame": {
+                "type": "image",
+                "texture": "textures/ui/essemble/admin_frame",
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "size": [340, 340],
+                "offset": [0, 0],
+                "layer": 1
+              }
+            },
+            {
+              "admin_preview_box": {
+                "type": "panel",
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "size": [90, 126],
+                "offset": [-69, 9],
+                "layer": 3,
+                "controls": [
+                  {
+                    "admin_player_renderer": {
+                      "type": "custom",
+                      "renderer": "live_player_renderer",
+                      "anchor_from": "center",
+                      "anchor_to": "center",
+                      "size": [56, 88],
+                      "offset": [0, -26],
+                      "property_bag": {
+                        "#look_at_cursor": true
+                      },
+                      "layer": 4
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "admin_buttons_view@common.scrolling_panel": {
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "$show_background": false,
+                "size": [126, 126],
+                "offset": [49, 12],
+                "$scrolling_content": "server_form.petrik_buttons_content",
+                "$scroll_size": [5, "100% - 4px"],
+                "$scrolling_pane_size": ["100%", "100% - 2px"],
+                "$scrolling_pane_offset": [0, 0],
+                "$scroll_bar_right_padding_size": [0, 0],
+                "layer": 3
+              }
+            },
+          {
+            "admin_kembali_hitbox": {
+              "type": "button",
+              "anchor_from": "center",
+              "anchor_to": "center",
+              "size": [90, 34],
+              "offset": [118, -116],
+              "layer": 30,
+              "alpha": 0.0,
+              "button_mappings": [
+                {
+                  "from_button_id": "button.menu_select",
+                  "to_button_id": "button.menu_cancel",
+                  "mapping_type": "pressed",
+                  "consume_event": true
+      }
+    ]
+  }
+},
+{
+        "player_panel": {
+          "type": "panel",
+          "size": ["100%", "100%"],
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "petrik_root",
+              "source_property_name": "(not ((#title_text - 'PE_PLAYER_UI') = #title_text))",
+              "target_property_name": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "player_frame": {
+                "type": "image",
+                "texture": "textures/ui/essemble/player_frame",
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "size": [340, 340],
+                "offset": [0, 0],
+                "layer": 1
+              }
+            },
+            {
+              "player_preview_box": {
+                "type": "panel",
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "size": [89, 125],
+                "offset": [-68, 8],
+                "layer": 3,
+                "controls": [
+                  {
+                    "player_renderer": {
+                      "type": "custom",
+                      "renderer": "live_player_renderer",
+                      "anchor_from": "center",
+                      "anchor_to": "center",
+                      "size": [58, 86],
+                      "offset": [0, 11],
+                      "property_bag": {
+                        "#look_at_cursor": true
+                      },
+                      "layer": 1
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "player_buttons_view@common.scrolling_panel": {
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "$show_background": false,
+                "size": [108, 123],
+                "offset": [49, 12],
+                "$scrolling_content": "server_form.petrik_buttons_content",
+                "$scroll_size": [5, "100% - 4px"],
+                "$scrolling_pane_size": ["100% - 6px", "100% - 2px"],
+                "$scrolling_pane_offset": [0, 0],
+                "$scroll_bar_right_padding_size": [0, 0],
+                "layer": 3
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "petrik_buttons_content": {
+    "type": "stack_panel",
+    "size": ["100%", "100%c"],
+    "orientation": "vertical",
+    "controls": [
+      {
+        "petrik_dynamic_buttons_panel": {
+          "type": "stack_panel",
+          "size": ["100%", "100%c"],
+          "orientation": "vertical",
+          "factory": {
+            "name": "buttons",
+            "control_ids": {
+              "button": "server_form.petrik_dynamic_button",
+              "label": "@server_form.dynamic_label",
+              "header": "@server_form.dynamic_header",
+              "divider": "@settings_common.option_group_section_divider"
+            }
+          },
+          "collection_name": "form_buttons",
+          "bindings": [
+            {
+              "binding_name": "#form_button_contents",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "petrik_dynamic_button": {
+    "type": "panel",
+    "size": [118, 41],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "controls": [
+      {
+        "form_button@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "size": [108, 33],
+          "offset": [0, 4],
+          "$button_text": "#form_button_text",
+          "$button_text_binding_type": "collection",
+          "$button_text_grid_collection_name": "form_buttons",
+          "$button_text_max_size": ["90%", 13],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
